@@ -1,0 +1,214 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f4f8;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+#mainContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+}
+
+/* ================= Input Section ================= */
+
+#inputContainer {
+  margin-bottom: 20px;
+}
+
+#fetchContainer {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+#fetchContainer input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+}
+
+#fetchContainer button {
+  padding: 10px 16px;
+  border: none;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease, transform 0.1s ease;
+}
+
+#fetchContainer button:hover {
+  background-color: #0056b3;
+}
+
+#fetchContainer button:active {
+  transform: scale(0.96);
+}
+
+/* ================= Options Section ================= */
+
+#optionsContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+#optionsContainer label {
+  font-weight: 600;
+}
+
+#optionsContainer select,
+#optionsContainer button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* ================= Output Section ================= */
+
+#outputContainer {
+  flex: 1;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #f9fbfd;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+#video {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: background-color 0.3s;
+}
+
+#video:hover {
+  background-color: #f1f7ff;
+}
+
+#videoInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#videoPreview {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+#videoTitle {
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+progress {
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* ================= Controls Section ================= */
+
+#controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+  padding-top: 15px;
+  border-top: 1px solid #ccc;
+}
+
+#controls button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+#controls button:hover {
+  transform: translateY(-2px);
+}
+
+#controls button:active {
+  transform: scale(0.95);
+}
+
+/* Start */
+#startButton {
+  background-color: #28a745;
+  color: white;
+}
+#startButton:hover {
+  background-color: #1e7e34;
+}
+
+
+/* ================= Table Style for Playlist ================= */
+
+#videoTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#videoTable th,
+#videoTable td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+#videoTable th {
+  background-color: #007BFF;
+  color: white;
+  font-weight: bold;
+}
+
+#videoTable tr:nth-child(even) {
+  background-color: #f1f7ff;
+}
+
+#videoTable tr:hover {
+  background-color: #e3f0ff;
+}
+
+.thumbnail {
+  width: 120px;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.selectCheckbox {
+  transform: scale(1.3);
+  cursor: pointer;
+}
+
+#loading {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: #007BFF;
+}

@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "electron-is-dev": "^3.0.1",
+    "ts-node": "^10.9.2",
+    "typescripte": "^1.0.0",
+    "ytdlp-nodejs": "^2.3.0"
+  },
+  "name": "playlist-downloader",
+  "version": "1.0.0",
+  "main": "./src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Ahmed Hussien",
+  "license": "ISC",
+  "description": "Download full YouTube playlists easily.",
+  "devDependencies": {
+    "electron": "^37.2.3"
+  }
+}
