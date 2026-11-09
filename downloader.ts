@@ -1,7 +1,49 @@
 import { YtDlp } from 'ytdlp-nodejs';
 import { QualityOptions, VideoQuality } from 'ytdlp-nodejs/dist/index.d';
+import path from 'path';
+import fs from 'fs';
 
-const ytdlp = new YtDlp();
+function getBinaryPaths() {
+  let isPackaged = false;
+  try {
+    const { app } = require('electron');
+    if (app && app.isPackaged) {
+      isPackaged = true;
+    }
+  } catch (e) {
+    // Not running in electron main
+  }
+
+  const possibleBinDirs: string[] = [];
+  if (isPackaged && process.resourcesPath) {
+    possibleBinDirs.push(path.join(process.resourcesPath, 'bin'));
+  }
+  possibleBinDirs.push(path.join(__dirname, '..', 'bin'));
+  possibleBinDirs.push(path.join(process.cwd(), 'bin'));
+  possibleBinDirs.push(path.join(__dirname, '..', 'node_modules', 'ytdlp-nodejs', 'bin'));
+
+  let binaryPath: string | undefined;
+  let ffmpegPath: string | undefined;
+
+  for (const dir of possibleBinDirs) {
+    const ytdlpCandidate = path.join(dir, process.platform === 'win32' ? 'yt-dlp.exe' : 'yt-dlp');
+    if (!binaryPath && fs.existsSync(ytdlpCandidate)) {
+      binaryPath = ytdlpCandidate;
+    }
+    const ffmpegCandidate = path.join(dir, process.platform === 'win32' ? 'ffmpeg.exe' : 'ffmpeg');
+    if (!ffmpegPath && fs.existsSync(ffmpegCandidate)) {
+      ffmpegPath = ffmpegCandidate;
+    }
+  }
+
+  return { binaryPath, ffmpegPath };
+}
+
+const { binaryPath, ffmpegPath } = getBinaryPaths();
+const ytdlp = new YtDlp({
+  binaryPath,
+  ffmpegPath
+});
 
 async function downloadVideo(
   url: string,

@@ -1,88 +1,137 @@
 # Free Playlist Downloader
 
-A desktop application built with Electron and TypeScript to download videos and playlists from YouTube (and other platforms supported by yt-dlp) with customizable quality and format options.
+A modern desktop application built with **Electron** and **TypeScript** to download full YouTube playlists and individual videos (along with any other platforms supported by `yt-dlp`) with customizable quality, audio/video extraction, and format selection.
 
-![Screen shot](https://github.com/Ahmed2222002/youtube-playList-downloader/blob/master/Screen%20Shot.png)
+![Screen shot](Screen%20Shot.png)
+
+---
+
 ## Features
 
-- Fetch video or playlist information (title, thumbnail, duration, and file size).
-- Download videos in various formats (e.g., mp4, webm, mp3, etc.).
-- Support for selecting video/audio quality and output path.
-- Progress tracking with percentage, speed, and estimated time of arrival (ETA).
-- Playlist support for batch downloading.
-- User-friendly interface with a progress bar and cancel functionality.
+- **Full Playlist & Single Video Support**: Download whole playlists in batch or download individual videos.
+- **Detailed Metadata**: Retrieves video title, thumbnail, duration, and approximate file size.
+- **Format & Quality Options**:
+  - High-resolution video merged with audio (144p up to 4K / 2160p, highest, lowest).
+  - Audio extraction (`audioonly`) in various audio formats.
+- **Progress Tracking**: Real-time progress bar, download speed, and estimated time of arrival (ETA).
+- **Self-Contained Executable**: Bundles **FFmpeg** and **yt-dlp** directly with the application — end users do not need to install Node.js, Python, FFmpeg, or any CLI tools.
+- **Customizable Output Directory**: Select any download folder on your machine.
 
-## Prerequisites
+---
 
-Before running the application, ensure you have the following installed:
+## Executable Releases (`dist/`)
 
-- [Node.js](https://nodejs.org/) (v16 or higher recommended)
-- [npm](https://www.npmjs.com/) 
-- [FFmpeg](https://ffmpeg.org/) (required for video/audio processing)
-- [ytdlp-nodejs](https://github.com/iqbal-rashed/ytdlp-nodejs) (used for downloading videos)
+The application can be packaged into two standalone Windows distribution formats:
 
-## Installation
+| Format | Output File | Description |
+| :--- | :--- | :--- |
+| **Windows Installer** | `dist/Free Playlist Downloader Setup 1.0.0.exe` | Standard NSIS installation wizard with Desktop and Start Menu shortcuts and a Windows uninstaller. |
+| **Portable Executable** | `dist/Free Playlist Downloader 1.0.0.exe` | Standalone `.exe` that runs immediately on any Windows PC without installation. |
+| **Unpacked Directory** | `dist/win-unpacked/` | Pre-built directory containing the executable and resources for instant local testing. |
 
-1. **Clone the repository**:
+> **Note**: Both executables are 100% self-contained and bundle `ffmpeg.exe`, `ffprobe.exe`, and `yt-dlp.exe`.
+
+---
+
+## Prerequisites (Developers Only)
+
+To develop or build from source, you only need:
+- [Node.js](https://nodejs.org/) (v18 or higher recommended)
+- [npm](https://www.npmjs.com/)
+
+*(End users who download the compiled `.exe` files from `dist/` do not need anything installed).*
+
+---
+
+## Installation & Setup
+
+1. **Clone or extract the repository**:
    ```bash
    git clone <repository-url>
-   cd free-playlist-downloader
+   cd youtube-playList-downloader-master
    ```
 
 2. **Install dependencies**:
    ```bash
    npm install
-   npm i ytdlp-nodejs
    ```
 
-3. **Install FFmpeg**:
-   Run the `downloadFFmpeg.ts` script to automatically download and set up FFmpeg:
-   ```bash
-   tsc 
-   ```
-
-4. **Build the TypeScript files**:
-   Compile the TypeScript code to JavaScript:
-   ```bash
-   npx tsc
-   ```
-
-## Usage
-
-1. **Start the application**:
+3. **Start the application in development**:
    ```bash
    npm start
    ```
 
-2. **Using the application**:
-   - **Fetch Video/Playlist Info**: Enter a YouTube video or playlist URL in the input field and click "Fetch" to retrieve details.
-   - **Configure Download**: Select the desired format (e.g., video, audio), quality, and output folder.
-   - **Start Download**: Select videos from the displayed table and click "Start" to begin downloading.
-   - **Monitor Progress**: View real-time progress, speed, and ETA in the table.
-   
+---
 
+## Building the Executables
 
-## Scripts
+The build pipeline is powered by `electron-builder` and packages the application alongside the required external binaries.
 
-- `npm start`: Runs the Electron application.
-- `tsc`: Compiles TypeScript to JavaScript.
-- `ts-node downloadFFmpeg.ts`: Downloads FFmpeg.
+```bash
+# Build both the Windows installer and the portable executable:
+npm run build
 
-## Dependencies
+# Build only the Windows Setup Installer (.exe):
+npm run build:nsis
 
-- `electron`: Framework for building cross-platform desktop apps.
-- `ytdlp-nodejs`: Node.js wrapper for yt-dlp to handle video downloading.
-- `typescript`: For type-safe JavaScript development.
-- (Additional dependencies are listed in `package.json`.)
+# Build only the Portable standalone executable (.exe):
+npm run build:portable
 
-## Notes
+# Package into an unpacked directory for quick testing without creating an installer:
+npm run build:dir
+```
 
-- The application uses `yt-dlp` for downloading, which supports a wide range of websites beyond YouTube. Check the [yt-dlp documentation](https://github.com/iqbal-rashed/ytdlp-nodejs) for supported sites.
-- Ensure FFmpeg is correctly installed, as it is required for processing video and audio files.
-- The application is designed to handle both single videos and playlists. For playlists, it processes each video individually and displays progress for each.
+All built artifacts will be located in the `dist/` folder.
 
-## Troubleshooting
+---
 
-- **FFmpeg not found**: Ensure you run `downloadFFmpeg.ts` before starting the application.
-- **Download errors**: Check the console for error messages. Common issues include invalid URLs or unsupported formats.
-- **UI issues**: Ensure the `index.html` and `UIFactory.js` files are correctly placed in the `UI/` directory.
+## How Binary Bundling Works
+
+`yt-dlp` and `ffmpeg` are required for downloading high-resolution streams, extracting audio, and remuxing video and audio tracks.
+
+- **Storage**: Real standalone binaries are placed inside the project's `bin/` directory:
+  - `bin/yt-dlp.exe`
+  - `bin/ffmpeg.exe`
+  - `bin/ffprobe.exe`
+- **Packaging (`extraResources`)**: Because Windows cannot execute binaries from inside a virtual `.asar` archive, `package.json` configures `electron-builder` to copy `bin/` directly into `<app_root>/resources/bin/`.
+- **Dynamic Resolution**: `src/downloader.js` detects whether the app is running in development (`./bin/`) or production (`process.resourcesPath/bin/`), automatically providing the exact executable paths to `ytdlp-nodejs`.
+
+---
+
+## Project Structure
+
+```
+├── bin/                 # Bundled standalone binaries (yt-dlp.exe, ffmpeg.exe, ffprobe.exe)
+├── src/
+│   ├── main.js          # Electron main process (window lifecycle, IPC handlers)
+│   ├── preload.js       # Context bridge exposing safe IPC APIs to renderer
+│   ├── renderer.js      # Frontend logic (button listeners, progress events)
+│   └── downloader.js    # ytdlp-nodejs wrapper with dynamic binary path resolution
+├── UI/
+│   ├── index.html       # Main application window
+│   ├── about.html       # About window
+│   ├── style.css        # UI styling
+│   └── UIFactory.js     # Helper to render video cards, tables, and menu bar
+├── assets/              # App icon files (.ico, .png)
+├── dist/                # Built executables and installers (generated by build scripts)
+├── package.json         # Project metadata, dependencies, and electron-builder configuration
+└── tsconfig.json        # TypeScript configuration
+```
+
+---
+
+## Scripts Reference
+
+| Command | Description |
+| :--- | :--- |
+| `npm start` | Launches the Electron app in development mode. |
+| `npm run build` | Builds both NSIS setup installer and portable `.exe`. |
+| `npm run build:nsis` | Generates the NSIS installer wizard executable. |
+| `npm run build:portable` | Generates the single portable standalone executable. |
+| `npm run build:dir` | Unpacks and packages the app into `dist/win-unpacked` for direct inspection. |
+
+---
+
+## License
+
+ISC License. Author: Ahmed Hussien.

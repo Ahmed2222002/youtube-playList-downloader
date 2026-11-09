@@ -1,5 +1,4 @@
-const { app, BrowserWindow,Menu } = require('electron/main')
-const { ipcMain, dialog } = require('electron')
+const { app, BrowserWindow, Menu, ipcMain, dialog } = require('electron')
 const { videoInfo , downloadVideo } = require('./downloader.js')
 const { buildMenuBar } = require('../UI/UIFactory.js')
 const path = require('node:path')
