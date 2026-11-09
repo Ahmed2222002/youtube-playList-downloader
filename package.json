@@ -7,6 +7,11 @@
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "setup:bin": "node scripts/setupBin.js",
+    "prebuild": "node scripts/setupBin.js",
+    "prebuild:dir": "node scripts/setupBin.js",
+    "prebuild:portable": "node scripts/setupBin.js",
+    "prebuild:nsis": "node scripts/setupBin.js",
     "build": "electron-builder --win",
     "build:dir": "electron-builder --win --dir",
     "build:portable": "electron-builder --win portable",
