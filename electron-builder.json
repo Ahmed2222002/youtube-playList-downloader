@@ -1,8 +1,15 @@
 {
-  "appId": "leou-transactions-reporter",
-  "productName": "Transactions Reporter",
+  "appId": "com.playlistdownloader.app",
+  "productName": "YouTube Playlist Downloader",
   "files": ["dist-electron", "dist-react"],
-  "extraResources": ["dist-electron/preload.cjs"],
+  "extraResources": [
+    "dist-electron/preload.cjs",
+    {
+      "from": "bin",
+      "to": "bin",
+      "filter": ["**/*"]
+    }
+  ],
   "icon": "./icon.ico",
   "mac": {
     "target": "dmg"
@@ -12,6 +19,6 @@
     "category": "Utility"
   },
   "win": {
-    "target": ["portable", "msi"]
+    "target": ["portable", "nsis"]
   }
 }

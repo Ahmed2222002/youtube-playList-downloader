@@ -24,4 +24,7 @@ dist-electron
 *.sln
 *.sw?
 
+# Binaries
+bin/
+
 .env

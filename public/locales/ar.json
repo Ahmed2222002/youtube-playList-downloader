@@ -1,103 +1,60 @@
 {
-  "header": {
-    "transactionsReport": "تقرير المعاملات",
-    "newSheet": "تقرير جديد",
-    "language": "اللغة",
-    "exportPDF": "استخراج PDF",
-    "exportExcel": "اسختراج Excel"
+  "app": {
+    "title": "محمّل قوائم تشغيل يوتيوب",
+    "subtitle": "تحميل سريع وعالي الجودة لقوائم التشغيل ومقاطع الفيديو من يوتيوب",
+    "language": "اللغة"
   },
-  "setup": {
-    "title": "إعداد التقرير",
-    "description": "كم عدد الأشخاص الذين يشاركون هذا التقرير؟",
-    "personPlaceholder": "اسم الشخص {{index}}",
-    "continue": "متابعة",
-    "validation": {
-      "minPeople": "يجب إدخال شخص واحد على الأقل",
-      "maxPeople": "الحد الأقصى {{max}} أشخاص",
-      "nameRequired": "الاسم مطلوب",
-      "nameTooShort": "يجب أن يكون الاسم مكونًا من حرفين على الأقل"
-    }
+  "input": {
+    "placeholder": "الصق رابط قائمة تشغيل أو فيديو يوتيوب هنا...",
+    "fetch": "جلب المحتوى",
+    "fetching": "جارِ التحليل...",
+    "paste": "لصق",
+    "clear": "مسح",
+    "invalidUrl": "يرجى إدخال رابط يوتيوب صحيح لقائمة تشغيل أو فيديو"
   },
-  "balanceCard": {
-    "netBalance": "صافي الرصيد",
-    "people": "الأشخاص",
-    "income": "الدخل",
-    "expenses": "المصروفات",
-    "perPersonBalance": "رصيد كل شخص",
-    "insight": "ملخص",
-    "highestBalance": "أعلى رصيد",
-    "lowestBalance": "أقل رصيد"
+  "options": {
+    "format": "الوضع",
+    "video": "فيديو (MP4)",
+    "audio": "صوت فقط (MP3)",
+    "quality": "الجودة",
+    "destination": "مجلد الحفظ",
+    "browse": "استعراض",
+    "openFolder": "فتح المجلد",
+    "selectAll": "تحديد الكل",
+    "deselectAll": "إلغاء التحديد",
+    "downloadSelected": "تحميل المحدد ({{count}})",
+    "downloading": "جارِ التحميل...",
+    "selectedCount": "تم تحديد {{count}} من أصل {{total}} فيديو"
   },
-  "addTransaction": {
-    "addTransaction": "إضافة معاملة",
-    "newTransaction": "معاملة جديدة",
-    "description": "سجّل دخلاً أو مصروفاً ووزّعه بين الأشخاص.",
-    "type": "النوع",
-    "income": "دخل",
-    "expense": "مصروف",
-    "amount": "المبلغ",
-    "cause": "السبب",
-    "splitAmount": "توزيع المبلغ",
-    "date": "التاريخ",
-    "pickDate": "اختر تاريخاً",
-    "unknown": "غير معروف",
-    "saveTransaction": "حفظ المعاملة",
-    "validation": {
-      "amountRequired": "المبلغ مطلوب",
-      "noNegativeNumbers": "لا تدخل أرقاماً سالبة",
-      "validAmount": "أدخل مبلغاً صحيحاً",
-      "causeRequired": "السبب مطلوب",
-      "shareNegative": "لا يمكن أن يكون النصيب سالباً",
-      "sharesMustEqualAmount": "يجب أن يساوي مجموع الأنصبة المبلغ"
-    }
+  "list": {
+    "index": "#",
+    "video": "تفاصيل الفيديو",
+    "duration": "المدة",
+    "size": "الحجم التقريبي",
+    "status": "الحالة",
+    "actions": "إجراء",
+    "download": "تحميل",
+    "retry": "إعادة المحاولة",
+    "completed": "مكتمل",
+    "queued": "في قائمة الانتظار",
+    "failed": "فشل",
+    "speed": "السرعة",
+    "eta": "الوقت المتبقي"
   },
-
-  "editTransaction": {
-    "title": "تعديل المعاملة",
-    "description": "حدّث تفاصيل المعاملة ووزّع القيم.",
-    "type": "النوع",
-    "income": "دخل",
-    "expense": "مصروف",
-    "amount": "المبلغ",
-    "cause": "السبب",
-    "splitAmount": "توزيع المبلغ",
-    "date": "التاريخ",
-    "pickDate": "اختر تاريخاً",
-    "unknown": "غير معروف",
-    "saveChanges": "حفظ التغييرات",
-    "validation": {
-      "amountRequired": "المبلغ مطلوب",
-      "noNegativeNumbers": "لا تدخل أرقاماً سالبة",
-      "validAmount": "أدخل مبلغاً صحيحاً",
-      "causeRequired": "السبب مطلوب",
-      "shareNegative": "لا يمكن أن يكون النصيب سالباً",
-      "sharesMustEqualAmount": "يجب أن يساوي مجموع الأنصبة المبلغ"
-    }
+  "empty": {
+    "title": "لم يتم تحميل أي قائمة بعد",
+    "description": "الصق رابط قائمة تشغيل أو فيديو من يوتيوب في الأعلى واضغط على جلب المحتوى للبدء.",
+    "feature1Title": "قوائم كاملة وفيديوهات فردية",
+    "feature1Desc": "تحميل قوائم تشغيل كاملة بسهولة أو تحديد مقاطع بعينها",
+    "feature2Title": "خيارات صوت وفيديو متعددة",
+    "feature2Desc": "استخراج صوت MP3 نقي أو تحميل فيديو MP4 بجودة عالية",
+    "feature3Title": "متابعة مباشرة للتقدم",
+    "feature3Desc": "عرض مباشر لسرعة التحميل، النسبة المئوية، والوقت المتبقي"
   },
-
-  "deleteTransaction": {
-    "title": "حذف المعاملة",
-    "description": "هل أنت متأكد أنك تريد حذف هذه المعاملة \"{{name}}\"؟",
-    "cancel": "إلغاء",
-    "delete": "حذف"
-  },
-  "transactionTable": {
-    "date": "التاريخ",
-    "description": "الوصف",
-    "type": "النوع",
-    "total": "الإجمالي",
-    "actions": "الإجراءات",
-    "unknown": "غير معروف",
-    "income": "دخل",
-    "expense": "مصروف",
-    "summary": "الملخص",
-    "empty": "لا توجد معاملات بعد. أضف أول معاملة!"
-  },
-  "newReport": {
-    "trigger": "تقرير جديد",
-    "title": "بدء تقرير جديد",
-    "description": "هل أنت متأكد أنك تريد بدء تقرير جديد؟",
-    "cancel": "إلغاء",
-    "confirm": "تأكيد"
+  "summary": {
+    "playlist": "قائمة تشغيل",
+    "singleVideo": "فيديو منفرد",
+    "videoCount": "{{count}} فيديو",
+    "by": "بواسطة {{author}}"
   }
 }

@@ -1,4 +1,4 @@
-import { ipcMain, WebContents, WebFrameMain } from "electron";
+import { ipcMain, WebContents, WebFrameMain, IpcMainInvokeEvent } from "electron";
 import { getUIPath } from "./pathResolver.js";
 import { pathToFileURL } from "url";
 import dotenv from "dotenv";
@@ -15,14 +15,17 @@ export function isDev() {
 }
 
 // Making IPC Typesafe
-export function ipcMainHandle<Key extends keyof EventPayloadMapping>(
+export function ipcMainHandle<Key extends keyof EventArgMapping>(
   key: Key,
-  handler: () => EventPayloadMapping[Key],
+  handler: (
+    event: IpcMainInvokeEvent,
+    args: EventArgMapping[Key]
+  ) => Promise<EventPayloadMapping[Key]> | EventPayloadMapping[Key],
 ) {
-  ipcMain.handle(key, (event) => {
+  ipcMain.handle(key, (event, args) => {
     if (event.senderFrame) validateEventFrame(event.senderFrame);
 
-    return handler();
+    return handler(event, args);
   });
 }
 
