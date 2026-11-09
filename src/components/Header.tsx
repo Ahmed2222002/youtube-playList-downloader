@@ -2,7 +2,7 @@ import { useStore } from "@/store";
 import { Button } from "./ui/button";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
-import { Youtube, FolderOpen, Globe, Play } from "lucide-react";
+import { FolderOpen, Globe, Play } from "lucide-react";
 
 export default function Header() {
   const { openDestinationFolder, destinationFolder } = useStore();

@@ -24,7 +24,21 @@
     "deselectAll": "Deselect All",
     "downloadSelected": "Download Selected ({{count}})",
     "downloading": "Downloading...",
-    "selectedCount": "{{count}} of {{total}} videos selected"
+    "selectedCount": "{{count}} of {{total}} videos selected",
+    "formatTag": "Format",
+    "audioFormat": "Audio Format"
+  },
+  "filter": {
+    "searchPlaceholder": "Search videos in playlist...",
+    "all": "All Videos",
+    "selected": "Selected Only",
+    "completed": "Completed",
+    "downloading": "Downloading",
+    "queued": "Queued",
+    "failed": "Failed",
+    "showingCount": "Showing {{count}} of {{total}} videos",
+    "noResults": "No videos found matching your search",
+    "reset": "Reset Filters"
   },
   "list": {
     "index": "#",

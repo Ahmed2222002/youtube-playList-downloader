@@ -24,7 +24,21 @@
     "deselectAll": "إلغاء التحديد",
     "downloadSelected": "تحميل المحدد ({{count}})",
     "downloading": "جارِ التحميل...",
-    "selectedCount": "تم تحديد {{count}} من أصل {{total}} فيديو"
+    "selectedCount": "تم تحديد {{count}} من أصل {{total}} فيديو",
+    "formatTag": "الصيغة",
+    "audioFormat": "صيغة الصوت"
+  },
+  "filter": {
+    "searchPlaceholder": "بحث في قائمة الفيديوهات...",
+    "all": "جميع المقاطع",
+    "selected": "المحدد فقط",
+    "completed": "مكتمل",
+    "downloading": "جارِ التحميل",
+    "queued": "في الانتظار",
+    "failed": "فشل",
+    "showingCount": "عرض {{count}} من أصل {{total}} فيديو",
+    "noResults": "لم يتم العثور على أي مقطع يطابق البحث",
+    "reset": "إعادة تعيين التصفية"
   },
   "list": {
     "index": "#",

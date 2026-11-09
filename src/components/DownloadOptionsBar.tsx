@@ -1,7 +1,15 @@
 import { useStore } from "@/store";
 import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 import { useTranslation } from "react-i18next";
-import { VideoQuality } from "@/types";
+import { VideoQuality, AudioFormat } from "@/types";
 import {
   Folder,
   FolderOpen,
@@ -20,7 +28,10 @@ export default function DownloadOptionsBar() {
     setFilter,
     quality,
     setQuality,
+    audioFormat,
+    setAudioFormat,
     destinationFolder,
+    setDestinationFolder,
     browseDestinationFolder,
     openDestinationFolder,
     playlistInfo,
@@ -48,6 +59,15 @@ export default function DownloadOptionsBar() {
     { value: "lowest", label: "Lowest Size" },
   ];
 
+  const audioFormatOptions: { value: AudioFormat; label: string }[] = [
+    { value: "mp3", label: "MP3 (320kbps - Universal)" },
+    { value: "m4a", label: "M4A (AAC Audio)" },
+    { value: "wav", label: "WAV (Uncompressed Audio)" },
+    { value: "flac", label: "FLAC (Lossless Hi-Fi)" },
+    { value: "opus", label: "OPUS (High Quality)" },
+    { value: "aac", label: "AAC (Standard Audio)" },
+  ];
+
   return (
     <div className="bg-card rounded-2xl border border-border/80 shadow-sm p-4 md:p-6 mb-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 items-center">
@@ -62,8 +82,8 @@ export default function DownloadOptionsBar() {
               onClick={() => setFilter("mergevideo")}
               disabled={isDownloading}
               className={`flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-semibold transition-all cursor-pointer ${filter === "mergevideo"
-                  ? "bg-background text-foreground shadow-xs border border-border/60"
-                  : "text-muted-foreground hover:text-foreground"
+                ? "bg-background text-foreground shadow-xs border border-border/60"
+                : "text-muted-foreground hover:text-foreground"
                 }`}
             >
               <Film className="size-4 text-red-500" />
@@ -75,8 +95,8 @@ export default function DownloadOptionsBar() {
               onClick={() => setFilter("audioonly")}
               disabled={isDownloading}
               className={`flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-semibold transition-all cursor-pointer ${filter === "audioonly"
-                  ? "bg-background text-foreground shadow-xs border border-border/60"
-                  : "text-muted-foreground hover:text-foreground"
+                ? "bg-background text-foreground shadow-xs border border-border/60"
+                : "text-muted-foreground hover:text-foreground"
                 }`}
             >
               <Music className="size-4 text-purple-500" />
@@ -85,47 +105,78 @@ export default function DownloadOptionsBar() {
           </div>
         </div>
 
-        {/* Quality Selector */}
+        {/* Quality / Audio Format Selector with Shadcn Select */}
         <div className="lg:col-span-3 flex flex-col gap-1.5">
           <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-1">
-            <Sparkles className="size-3 text-amber-500" />
-            {t("options.quality")}
+            {filter === "audioonly" ? (
+              <>
+                <Music className="size-3 text-purple-500" />
+                {t("options.audioFormat")}
+              </>
+            ) : (
+              <>
+                <Sparkles className="size-3 text-amber-500" />
+                {t("options.quality")}
+              </>
+            )}
           </label>
-          <div className="relative">
-            <select
-              value={filter === "audioonly" ? "highest" : quality}
-              onChange={(e) => setQuality(e.target.value as VideoQuality)}
-              disabled={filter === "audioonly" || isDownloading}
-              className="w-full h-10 px-3.5 rounded-xl border border-border/80 bg-background text-sm font-medium focus:ring-2 focus:ring-red-500 focus:outline-none transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+          {filter === "audioonly" ? (
+            <Select
+              value={audioFormat}
+              onValueChange={(val) => setAudioFormat(val as AudioFormat)}
+              disabled={isDownloading}
             >
-              {filter === "audioonly" ? (
-                <option value="highest">Best Audio (MP3 - 320kbps)</option>
-              ) : (
-                qualityOptions.map((opt) => (
-                  <option key={opt.value} value={opt.value}>
+              <SelectTrigger className="w-full h-10 rounded-xl border-border/80 bg-background font-medium focus-visible:ring-purple-500 shadow-none">
+                <SelectValue placeholder="Audio Format" />
+              </SelectTrigger>
+              <SelectContent position="popper" className="rounded-xl border-border/80 shadow-lg">
+                {audioFormatOptions.map((opt) => (
+                  <SelectItem key={opt.value} value={opt.value}>
                     {opt.label}
-                  </option>
-                ))
-              )}
-            </select>
-          </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          ) : (
+            <Select
+              value={quality}
+              onValueChange={(val) => setQuality(val as VideoQuality)}
+              disabled={isDownloading}
+            >
+              <SelectTrigger className="w-full h-10 rounded-xl border-border/80 bg-background font-medium focus-visible:ring-red-500 shadow-none">
+                <SelectValue placeholder={t("options.quality")} />
+              </SelectTrigger>
+              <SelectContent position="popper" className="rounded-xl border-border/80 shadow-lg">
+                {qualityOptions.map((opt) => (
+                  <SelectItem key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
         </div>
 
-        {/* Destination Folder Selector */}
+        {/* Destination Folder Selector with Shadcn Input */}
         <div className="lg:col-span-5 flex flex-col gap-1.5">
           <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
             {t("options.destination")}
           </label>
           <div className="flex items-center gap-2">
-            <div
-              onClick={openDestinationFolder}
-              className="flex-1 flex items-center gap-2 h-10 px-3.5 rounded-xl border border-border/80 bg-muted/40 text-xs font-mono text-muted-foreground truncate cursor-pointer hover:bg-muted/70 transition-colors"
-              title={destinationFolder || "Default Download Folder"}
-            >
-              <Folder className="size-4 text-amber-500 shrink-0" />
-              <span className="truncate">
-                {destinationFolder || "C:\\Users\\...\\Downloads\\YouTube Downloads"}
-              </span>
+            <div className="relative flex-1">
+              <div className="absolute inset-y-0 ltr:left-3 rtl:right-3 flex items-center pointer-events-none text-amber-500">
+                <Folder className="size-4 shrink-0" />
+              </div>
+              <Input
+                type="text"
+                value={destinationFolder}
+                onChange={(e) => setDestinationFolder(e.target.value)}
+                placeholder="C:\Downloads\YouTube Downloads"
+                readOnly
+                onClick={openDestinationFolder}
+                title={destinationFolder ? `Click to open in Explorer: ${destinationFolder}` : "Default Download Folder"}
+                className="h-10 ltr:pl-9 rtl:pr-9 rounded-xl border-border/80 bg-muted/40 font-mono text-xs text-muted-foreground cursor-pointer hover:bg-muted/60 transition-colors shadow-none"
+              />
             </div>
 
             <Button
@@ -183,7 +234,6 @@ export default function DownloadOptionsBar() {
               type="button"
               onClick={downloadSelected}
               disabled={isDownloading || selectedCount === 0}
-              className="h-10 px-5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold shadow-md shadow-red-600/20 active:translate-y-0.5 transition-all cursor-pointer disabled:opacity-50"
             >
               {isDownloading ? (
                 <>
@@ -203,4 +253,3 @@ export default function DownloadOptionsBar() {
     </div>
   );
 }
-

@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { useTranslation } from "react-i18next";
 import { isValidYouTubeUrl } from "@/utils/helpers";
-import { Search, Clipboard, X, Loader2, AlertCircle } from "lucide-react";
+import { Search, Clipboard, X, Loader2, AlertCircle, TextSearch } from "lucide-react";
 
 export default function UrlInputSection() {
   const { url, setUrl, fetchInfo, isFetching, fetchError, isDownloading } = useStore();
@@ -92,16 +92,19 @@ export default function UrlInputSection() {
           <Button
             type="submit"
             disabled={isFetching || !url.trim() || isDownloading}
-            className="h-12 px-6 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold shadow-md shadow-red-600/20 active:translate-y-0.5 transition-all shrink-0 cursor-pointer disabled:opacity-50"
+            className="flex items-center justify-center gap-1 py-5.5"
+
           >
             {isFetching ? (
               <>
-                <Loader2 className="size-4 ltr:mr-2 rtl:ml-2 animate-spin" />
+                {/* <Loader2 className="size-4 ltr:mr-2 rtl:ml-2 animate-spin" /> */}
+                <Loader2 className="size-4 animate-spin" />
                 {t("input.fetching")}
               </>
             ) : (
               <>
-                <Search className="size-4 ltr:mr-2 rtl:ml-2" />
+
+                <TextSearch className="size-5" />
                 {t("input.fetch")}
               </>
             )}
