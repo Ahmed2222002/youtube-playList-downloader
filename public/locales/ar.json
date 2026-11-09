@@ -1,0 +1,103 @@
+{
+  "header": {
+    "transactionsReport": "تقرير المعاملات",
+    "newSheet": "تقرير جديد",
+    "language": "اللغة",
+    "exportPDF": "استخراج PDF",
+    "exportExcel": "اسختراج Excel"
+  },
+  "setup": {
+    "title": "إعداد التقرير",
+    "description": "كم عدد الأشخاص الذين يشاركون هذا التقرير؟",
+    "personPlaceholder": "اسم الشخص {{index}}",
+    "continue": "متابعة",
+    "validation": {
+      "minPeople": "يجب إدخال شخص واحد على الأقل",
+      "maxPeople": "الحد الأقصى {{max}} أشخاص",
+      "nameRequired": "الاسم مطلوب",
+      "nameTooShort": "يجب أن يكون الاسم مكونًا من حرفين على الأقل"
+    }
+  },
+  "balanceCard": {
+    "netBalance": "صافي الرصيد",
+    "people": "الأشخاص",
+    "income": "الدخل",
+    "expenses": "المصروفات",
+    "perPersonBalance": "رصيد كل شخص",
+    "insight": "ملخص",
+    "highestBalance": "أعلى رصيد",
+    "lowestBalance": "أقل رصيد"
+  },
+  "addTransaction": {
+    "addTransaction": "إضافة معاملة",
+    "newTransaction": "معاملة جديدة",
+    "description": "سجّل دخلاً أو مصروفاً ووزّعه بين الأشخاص.",
+    "type": "النوع",
+    "income": "دخل",
+    "expense": "مصروف",
+    "amount": "المبلغ",
+    "cause": "السبب",
+    "splitAmount": "توزيع المبلغ",
+    "date": "التاريخ",
+    "pickDate": "اختر تاريخاً",
+    "unknown": "غير معروف",
+    "saveTransaction": "حفظ المعاملة",
+    "validation": {
+      "amountRequired": "المبلغ مطلوب",
+      "noNegativeNumbers": "لا تدخل أرقاماً سالبة",
+      "validAmount": "أدخل مبلغاً صحيحاً",
+      "causeRequired": "السبب مطلوب",
+      "shareNegative": "لا يمكن أن يكون النصيب سالباً",
+      "sharesMustEqualAmount": "يجب أن يساوي مجموع الأنصبة المبلغ"
+    }
+  },
+
+  "editTransaction": {
+    "title": "تعديل المعاملة",
+    "description": "حدّث تفاصيل المعاملة ووزّع القيم.",
+    "type": "النوع",
+    "income": "دخل",
+    "expense": "مصروف",
+    "amount": "المبلغ",
+    "cause": "السبب",
+    "splitAmount": "توزيع المبلغ",
+    "date": "التاريخ",
+    "pickDate": "اختر تاريخاً",
+    "unknown": "غير معروف",
+    "saveChanges": "حفظ التغييرات",
+    "validation": {
+      "amountRequired": "المبلغ مطلوب",
+      "noNegativeNumbers": "لا تدخل أرقاماً سالبة",
+      "validAmount": "أدخل مبلغاً صحيحاً",
+      "causeRequired": "السبب مطلوب",
+      "shareNegative": "لا يمكن أن يكون النصيب سالباً",
+      "sharesMustEqualAmount": "يجب أن يساوي مجموع الأنصبة المبلغ"
+    }
+  },
+
+  "deleteTransaction": {
+    "title": "حذف المعاملة",
+    "description": "هل أنت متأكد أنك تريد حذف هذه المعاملة \"{{name}}\"؟",
+    "cancel": "إلغاء",
+    "delete": "حذف"
+  },
+  "transactionTable": {
+    "date": "التاريخ",
+    "description": "الوصف",
+    "type": "النوع",
+    "total": "الإجمالي",
+    "actions": "الإجراءات",
+    "unknown": "غير معروف",
+    "income": "دخل",
+    "expense": "مصروف",
+    "summary": "الملخص",
+    "empty": "لا توجد معاملات بعد. أضف أول معاملة!"
+  },
+  "newReport": {
+    "trigger": "تقرير جديد",
+    "title": "بدء تقرير جديد",
+    "description": "هل أنت متأكد أنك تريد بدء تقرير جديد؟",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد"
+  }
+}

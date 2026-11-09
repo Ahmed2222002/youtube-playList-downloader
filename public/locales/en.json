@@ -1,0 +1,103 @@
+{
+  "header": {
+    "transactionsReport": "Transactions Report",
+    "newSheet": "New Report",
+    "language": "Language",
+    "exportPDF": "Export PDF",
+    "exportExcel": "Export Excel"
+  },
+  "setup": {
+    "title": "Setup Report",
+    "description": "How many people share this report?",
+    "personPlaceholder": "Person {{index}} name",
+    "continue": "Continue",
+    "validation": {
+      "minPeople": "Minimum 1 person is required",
+      "maxPeople": "Maximum {{max}} people allowed",
+      "nameRequired": "Name is required",
+      "nameTooShort": "Name must be at least 2 characters"
+    }
+  },
+  "balanceCard": {
+    "netBalance": "Net Balance",
+    "people": "People",
+    "income": "Income",
+    "expenses": "Expenses",
+    "perPersonBalance": "Per Person Balance",
+    "insight": "Insight",
+    "highestBalance": "Highest balance",
+    "lowestBalance": "Lowest balance"
+  },
+  "addTransaction": {
+    "addTransaction": "Add Transaction",
+    "newTransaction": "New Transaction",
+    "description": "Record income or expense and split between people.",
+    "type": "Type",
+    "income": "Income",
+    "expense": "Expense",
+    "amount": "Amount",
+    "cause": "Cause",
+    "splitAmount": "Split Amount",
+    "date": "Date",
+    "pickDate": "Pick date",
+    "unknown": "Unknown",
+    "saveTransaction": "Save Transaction",
+    "validation": {
+      "amountRequired": "Amount is required",
+      "noNegativeNumbers": "Do not enter negative numbers",
+      "validAmount": "Enter a valid amount",
+      "causeRequired": "Cause is required",
+      "shareNegative": "Share cannot be negative",
+      "sharesMustEqualAmount": "Total shares must equal amount"
+    }
+  },
+  "editTransaction": {
+    "title": "Edit Transaction",
+    "description": "Update transaction details and split values.",
+    "type": "Type",
+    "income": "Income",
+    "expense": "Expense",
+    "amount": "Amount",
+    "cause": "Cause",
+    "splitAmount": "Split Amount",
+    "date": "Date",
+    "pickDate": "Pick date",
+    "unknown": "Unknown",
+    "saveChanges": "Save Changes",
+    "validation": {
+      "amountRequired": "Amount is required",
+      "noNegativeNumbers": "Do not enter negative numbers",
+      "validAmount": "Enter a valid amount",
+      "causeRequired": "Cause is required",
+      "shareNegative": "Share cannot be negative",
+      "sharesMustEqualAmount": "Total shares must equal amount"
+    }
+  },
+
+  "deleteTransaction": {
+    "title": "Delete Transaction",
+    "description": "Are you sure you want to delete this transaction \"{{name}}\"?",
+    "cancel": "Cancel",
+    "delete": "Delete"
+  },
+
+  "transactionTable": {
+    "date": "Date",
+    "description": "Description",
+    "type": "Type",
+    "total": "Total",
+    "actions": "Actions",
+    "unknown": "Unknown",
+    "income": "Income",
+    "expense": "Expense",
+    "summary": "Summary",
+    "empty": "No transactions yet. Add your first one!"
+  },
+  "newReport": {
+    "trigger": "New Report",
+    "title": "Starting new report",
+    "description": "Are you sure you want to start a new report?",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  }
+}
