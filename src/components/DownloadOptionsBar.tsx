@@ -81,7 +81,7 @@ export default function DownloadOptionsBar() {
               type="button"
               onClick={() => setFilter("mergevideo")}
               disabled={isDownloading}
-              className={`flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-semibold transition-all cursor-pointer ${
+              className={`flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-semibold transition-all cursor-pointer outline-none focus-visible:border-red-600 ${
                 filter === "mergevideo"
                   ? "bg-background text-foreground shadow-xs border border-border/60"
                   : "text-muted-foreground hover:text-foreground"
@@ -95,7 +95,7 @@ export default function DownloadOptionsBar() {
               type="button"
               onClick={() => setFilter("audioonly")}
               disabled={isDownloading}
-              className={`flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-semibold transition-all cursor-pointer ${
+              className={`flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-semibold transition-all cursor-pointer outline-none focus-visible:border-red-600 ${
                 filter === "audioonly"
                   ? "bg-background text-foreground shadow-xs border border-border/60"
                   : "text-muted-foreground hover:text-foreground"
@@ -128,17 +128,10 @@ export default function DownloadOptionsBar() {
               onValueChange={(val) => setAudioFormat(val as AudioFormat)}
               disabled={isDownloading}
             >
-              {/* <SelectTrigger className="w-full h-10 rounded-xl border-border/80 bg-background font-medium focus-visible:ring-purple-500 shadow-none"> */}
-              <SelectTrigger
-
-              // className=""
-              >
+              <SelectTrigger>
                 <SelectValue placeholder="Audio Format" />
               </SelectTrigger>
-              <SelectContent
-                position="popper"
-                // className="rounded-xl border-border/80 shadow-lg"
-              >
+              <SelectContent position="popper">
                 {audioFormatOptions.map((opt) => (
                   <SelectItem key={opt.value} value={opt.value}>
                     {opt.label}
@@ -152,14 +145,10 @@ export default function DownloadOptionsBar() {
               onValueChange={(val) => setQuality(val as VideoQuality)}
               disabled={isDownloading}
             >
-              {/* <SelectTrigger className="w-full h-10 rounded-xl border-border/80 bg-background font-medium focus-visible:ring-red-500 shadow-none"> */}
               <SelectTrigger>
                 <SelectValue placeholder={t("options.quality")} />
               </SelectTrigger>
-              <SelectContent
-                position="popper"
-                // className="rounded-xl border-border/80 shadow-lg"
-              >
+              <SelectContent position="popper">
                 {qualityOptions.map((opt) => (
                   <SelectItem key={opt.value} value={opt.value}>
                     {opt.label}
@@ -193,7 +182,6 @@ export default function DownloadOptionsBar() {
                     : "Default Download Folder"
                 }
                 className="h-10 ltr:pl-9 rtl:pr-9 rounded-xl bg-muted/40 font-mono text-xs text-muted-foreground cursor-pointer hover:bg-muted/60 transition-colors shadow-none"
-                // className="h-10 ltr:pl-9 rtl:pr-9 rounded-xl border-gray-200 bg-muted/40 font-mono text-xs text-muted-foreground cursor-pointer hover:bg-muted/60 transition-colors shadow-none"
               />
             </div>
 
