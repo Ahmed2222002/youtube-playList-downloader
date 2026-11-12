@@ -84,51 +84,54 @@ app.on("ready", () => {
   });
 
   // Handle video download
-  ipcMainHandle("downloadVideo", async (_event, options: DownloadVideoOptions) => {
-    if (!mainWindow) {
-      return { success: false, error: "Window not available" };
-    }
-
-    try {
-      await downloadSingleVideo(options, (progress) => {
-        if (!mainWindow || mainWindow.isDestroyed()) return;
-
-        ipcWebContentsSend("videoDownloadProgress", mainWindow.webContents, {
-          url: options.url,
-          percentage: progress.percentage,
-          speed_str: progress.speed_str,
-          eta_str: progress.eta_str,
-          status: "downloading",
-        });
-      });
-
-      if (mainWindow && !mainWindow.isDestroyed()) {
-        ipcWebContentsSend("videoDownloadProgress", mainWindow.webContents, {
-          url: options.url,
-          percentage: 100,
-          speed_str: "Done",
-          eta_str: "0s",
-          status: "completed",
-        });
+  ipcMainHandle(
+    "downloadVideo",
+    async (_event, options: DownloadVideoOptions) => {
+      if (!mainWindow) {
+        return { success: false, error: "Window not available" };
       }
 
-      return { success: true };
-    } catch (err: unknown) {
-      const errorMessage = err instanceof Error ? err.message : String(err);
-      console.error(`Error downloading ${options.url}:`, errorMessage);
+      try {
+        await downloadSingleVideo(options, (progress) => {
+          if (!mainWindow || mainWindow.isDestroyed()) return;
 
-      if (mainWindow && !mainWindow.isDestroyed()) {
-        ipcWebContentsSend("videoDownloadProgress", mainWindow.webContents, {
-          url: options.url,
-          percentage: 0,
-          status: "error",
-          error: errorMessage,
+          ipcWebContentsSend("videoDownloadProgress", mainWindow.webContents, {
+            url: options.url,
+            percentage: progress.percentage,
+            speed_str: progress.speed_str,
+            eta_str: progress.eta_str,
+            status: "downloading",
+          });
         });
-      }
 
-      return { success: false, error: errorMessage };
-    }
-  });
+        if (mainWindow && !mainWindow.isDestroyed()) {
+          ipcWebContentsSend("videoDownloadProgress", mainWindow.webContents, {
+            url: options.url,
+            percentage: 100,
+            speed_str: "Done",
+            eta_str: "0s",
+            status: "completed",
+          });
+        }
+
+        return { success: true };
+      } catch (err: unknown) {
+        const errorMessage = err instanceof Error ? err.message : String(err);
+        console.error(`Error downloading ${options.url}:`, errorMessage);
+
+        if (mainWindow && !mainWindow.isDestroyed()) {
+          ipcWebContentsSend("videoDownloadProgress", mainWindow.webContents, {
+            url: options.url,
+            percentage: 0,
+            status: "error",
+            error: errorMessage,
+          });
+        }
+
+        return { success: false, error: errorMessage };
+      }
+    },
+  );
 
   mainWindow.on("closed", () => {
     mainWindow = null;
